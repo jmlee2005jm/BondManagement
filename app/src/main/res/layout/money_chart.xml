@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="합계 표"
+        android:textSize="30dp"
+        android:padding="10dp"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="true"
+        android:padding="10dp">
+        <TableRow>
+            <TextView
+                android:layout_gravity="center"
+                android:text="이름"
+                android:textSize="30dp"/>
+            <TextView
+                android:text="     돈(빌려간 돈: +, 빌린 돈: -)"
+                android:textSize="25dp"/>
+        </TableRow>
+    </TableLayout>
+    <Button
+        android:id="@+id/sum_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:text="합계"/>
+</LinearLayout>
