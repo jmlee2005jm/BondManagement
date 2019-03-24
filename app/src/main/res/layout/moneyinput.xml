@@ -62,13 +62,13 @@
         <RadioButton
             android:id="@+id/earn_radioButton"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:text="빌려준 돈"
             android:textSize="20dp"/>
         <RadioButton
             android:id="@+id/pay_radioButton"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:text="갚을 돈"
             android:textSize="20dp"/>
     </RadioGroup>
@@ -108,11 +108,17 @@
             android:gravity="center"
             android:text="확인" />
     </LinearLayout>
-
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="정리하기" />
+    <Button
+        android:id="@+id/goToChartBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="표로 가기"
+        android:textSize="30dp"
+        android:layout_gravity="right"/>
 </LinearLayout>
 

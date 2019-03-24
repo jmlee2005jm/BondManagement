@@ -23,17 +23,17 @@ public class MainActivity extends AppCompatActivity {
         newInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
-                intent = new Intent(MainActivity.this, moneyInput.class);
-                startActivity(intent);
+                Intent i;
+                i = new Intent(MainActivity.this, moneyInput.class);
+                startActivity(i);
             }
         });
         sumLookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent;
-                intent = new Intent(MainActivity.this, moneyChart.class);
-                startActivity(intent);
+                Intent i;
+                i = new Intent(MainActivity.this, moneyChart.class);
+                startActivity(i);
             }
         });
     }
