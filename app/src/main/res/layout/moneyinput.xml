@@ -113,12 +113,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="정리하기" />
-    <Button
-        android:id="@+id/goToChartBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="표로 가기"
-        android:textSize="30dp"
-        android:layout_gravity="right"/>
 </LinearLayout>
 
