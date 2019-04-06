@@ -29,6 +29,24 @@
                 android:textSize="25dp"/>
         </TableRow>
     </TableLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/alarmBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_weight="1"
+        android:text="새 알림"/>
+    <Button
+        android:id="@+id/newBondBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:layout_weight="1"
+        android:text="새 채무 관계"/>
+    </LinearLayout>
     <Button
         android:id="@+id/sum_button"
         android:layout_width="match_parent"
