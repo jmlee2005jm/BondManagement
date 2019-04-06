@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="error_message_for_network_unavailable">네트워크 연결이 불안정 합니다. \n나중에 다시 시도해주세요.</string>
+    <string name="register_success_message">회원가입에 성공하셨습니다. \n로그인 후 이용해주세요.</string>
 </resources>
