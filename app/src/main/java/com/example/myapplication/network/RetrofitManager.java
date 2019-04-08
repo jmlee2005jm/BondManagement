@@ -5,7 +5,9 @@ import android.widget.Toast;
 
 import com.example.myapplication.GlobalApplication;
 import com.example.myapplication.R;
+import com.example.myapplication.listener.SuccessLoginListener;
 import com.example.myapplication.listener.SuccessRegistrationListener;
+import com.example.myapplication.model.LoginDTO;
 import com.example.myapplication.model.User;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -25,6 +27,7 @@ public class RetrofitManager {
     private Retrofit retrofit;
     private BondManagementService service;
     private SuccessRegistrationListener mSuccessRegistrationListener;
+    private SuccessLoginListener mSuccessLoginListener;
 
     private RetrofitManager() {
         retrofit = new Retrofit.Builder().baseUrl(requestURL).addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create())).build();
@@ -43,6 +46,14 @@ public class RetrofitManager {
 
     public void removeSuccessRegistrationListener() {
         this.mSuccessRegistrationListener = null;
+    }
+
+    public void setOnSuccessLoginListener(SuccessLoginListener mSuccessLoginListener) {
+        this.mSuccessLoginListener = mSuccessLoginListener;
+    }
+
+    public void removeSuccessLoginListener() {
+        this.mSuccessLoginListener = null;
     }
 
     private void logForErrorResponse(int errorCode, String errorMessage, String methodName) {
@@ -66,6 +77,31 @@ public class RetrofitManager {
                         mSuccessRegistrationListener.onSuccessRegister();
                     }
                 } else {
+                    logForErrorResponse(response.code(), response.errorBody().toString(), methodName);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                logForFailureConnection(t.getMessage(), methodName);
+            }
+        });
+    }
+
+    public void login(LoginDTO loginDTO) {
+        final String methodName = "login";
+        Call<JsonObject> req = service.login(loginDTO);
+        req.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(GlobalApplication.getGlobalContext(), R.string.login_success_message, Toast.LENGTH_LONG).show();
+                    Log.i(TAG, methodName + ": loginSuccess, user_id = " + response.body().get("userId"));
+                    if (mSuccessLoginListener != null) {
+                        mSuccessLoginListener.onSuccessLogin();
+                    }
+                } else {
+                    Toast.makeText(GlobalApplication.getGlobalContext(), R.string.login_fail_message, Toast.LENGTH_LONG).show();
                     logForErrorResponse(response.code(), response.errorBody().toString(), methodName);
                 }
             }

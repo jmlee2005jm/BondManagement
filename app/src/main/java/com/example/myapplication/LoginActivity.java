@@ -1,15 +1,19 @@
 package com.example.myapplication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.EditText;
 
-public class LoginActivity extends AppCompatActivity {
+import com.example.myapplication.listener.SuccessLoginListener;
+import com.example.myapplication.model.LoginDTO;
+import com.example.myapplication.network.RetrofitManager;
+
+public class LoginActivity extends AppCompatActivity implements SuccessLoginListener {
     Button loginConfirmBtn, findIDPWBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,23 +28,28 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        //만약 로그인에 성공했다면
-        // loginConfirmButton.setOnClickListener(new View.OnClickListener() {
-        //            @Override
-        //            public void onClick(View v) {
-        //                Intent i;
-        //                i = new Intent(LoginActivity.this, moneyChart.class);
-        //                startActivity(i);
-        //            }
-        //        });
-        //실패했다면
-        //loginConfirmButton.setOnClickListener(new View.OnClickListener() {
-        //            @Override
-        //            public void onClick(View v) {
-        //                Toast toast;
-        //                toast = Toast.makeText(getApplicationContext(), "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-        //                toast.setMargin(20, 20);
-        //            }
-        //        });
+
+        RetrofitManager.getInstance().setOnSuccessLoginListener(this);
+        Button loginButton = findViewById(R.id.loginConfirmBtn);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText email = findViewById(R.id.idInput);
+                EditText password = findViewById(R.id.PWInput);
+                RetrofitManager.getInstance().login(new LoginDTO(email.getText().toString(), password.getText().toString()));
+            }
+        });
+    }
+
+    @Override
+    public void onSuccessLogin() {
+        Intent intent = new Intent(LoginActivity.this, moneyChart.class);
+        startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        RetrofitManager.getInstance().removeSuccessLoginListener();
+        super.onDestroy();
     }
 }

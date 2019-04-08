@@ -1,5 +1,6 @@
 package com.example.myapplication.network;
 
+import com.example.myapplication.model.LoginDTO;
 import com.example.myapplication.model.User;
 import com.google.gson.JsonObject;
 
@@ -13,4 +14,7 @@ public interface BondManagementService {
 
     @POST("/users")
     Call<JsonObject> register(@Body User user);
+
+    @POST("/login")
+    Call<JsonObject> login(@Body LoginDTO loginDTO);
 }
