@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
 
 import com.example.myapplication.listener.SuccessGetBondListListener;
@@ -28,6 +30,14 @@ public class moneyChart extends AppCompatActivity implements SuccessGetBondListL
         if (creditorId > 0L) {
             RetrofitManager.getInstance().getBondList(creditorId);
         }
+
+        findViewById(R.id.newBondBtn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(moneyChart.this, moneyInput.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
