@@ -1,5 +1,5 @@
 package com.example.myapplication.listener;
 
 public interface SuccessLoginListener {
-    void onSuccessLogin();
+    void onSuccessLogin(Long userId, String userName);
 }
